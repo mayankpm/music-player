@@ -108,6 +108,7 @@ export default function Sidebar({ refreshHome }) {
                 key={album.id}
                 className="flex items-center gap-2 p-2 rounded
                          hover:bg-white/10 transition-colors duration-200"
+                onClick={() => navigate('/album/1')}
               >
                 <div className="w-10 h-10 bg-white/5 rounded-md overflow-hidden">
                   <img

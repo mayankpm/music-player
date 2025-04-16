@@ -56,11 +56,14 @@ export default function AlbumDetailPage({ isPlaying, onPlayingChange }) {
 
   // Animation on page load
   useEffect(() => {
-    // Slight delay for a smoother entrance animation
+    // Simulate loading delay
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
     }, 100);
-
+    
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
     return () => clearTimeout(timer);
   }, []);
 

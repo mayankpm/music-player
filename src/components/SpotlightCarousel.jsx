@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const spotlightData = [
   {
@@ -32,6 +33,8 @@ const spotlightData = [
 ];
 
 export default function SpotlightCarousel() {
+  const navigate = useNavigate();
+  
   return (
     <section className="mt-8 px-6">
       <h2 className="text-2xl font-semibold mb-4 text-white">Spotlight</h2>
@@ -59,10 +62,12 @@ export default function SpotlightCarousel() {
 
 function SpotlightCard({ item }) {
   const [imgError, setImgError] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
       className="relative group aspect-[16/9] w-full md:w-64 rounded-lg overflow-hidden cursor-pointer"
+      onClick={() => navigate('/album/1')}
     >
       {!imgError ? (
         <>

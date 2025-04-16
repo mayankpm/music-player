@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RecentlyPlayedCompact({ track }) {
   const [imgError, setImgError] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className="hidden md:flex w-64 h-16 items-center gap-4 cursor-pointer hover:bg-gray-800 py-8 rounded-lg transition">
+    <div 
+      className="hidden md:flex w-64 h-16 items-center gap-4 cursor-pointer hover:bg-gray-800 py-8 rounded-lg transition"
+      onClick={() => navigate('/album/1')}
+    >
       {imgError || !track.image ? (
         <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center text-gray-300 text-xs">
           No Image

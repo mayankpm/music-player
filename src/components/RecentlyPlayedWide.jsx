@@ -1,8 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function RecentlyPlayedWide({ track }) {
+  const navigate = useNavigate();
+  
   return (
     <>
       {/* Mobile version */}
-      <div className="md:hidden w-full bg-[#222223] rounded-xl overflow-hidden flex shadow-md hover:bg-[#23232b] transition">
+      <div 
+        className="md:hidden w-full bg-[#222223] rounded-xl overflow-hidden flex shadow-md hover:bg-[#23232b] transition"
+        onClick={() => navigate('/album/1')}
+      >
         {/* Left side: Square album cover with dark mask */}
         <div className="w-24 h-24 relative overflow-hidden group cursor-pointer">
           <img
@@ -27,7 +34,10 @@ export default function RecentlyPlayedWide({ track }) {
       </div>
 
       {/* Desktop version */}
-      <div className="hidden md:flex w-[34rem] h-36 bg-[#222223] rounded-xl overflow-hidden shadow-md hover:bg-[#23232b] transition">
+      <div 
+        className="hidden md:flex w-[34rem] h-36 bg-[#222223] rounded-xl overflow-hidden shadow-md hover:bg-[#23232b] transition cursor-pointer"
+        onClick={() => navigate('/album/1')}
+      >
         {/* Left side: Big square album cover with dark mask */}
         <div className="w-36 h-full relative overflow-hidden group cursor-pointer">
           <img

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const playlists = [
   { name: 'Chill Mix' },
@@ -8,6 +9,8 @@ const playlists = [
 ];
 
 export default function CuratedPlaylists() {
+  const navigate = useNavigate();
+  
   return (
     <section className="mt-8 px-6">
       <h2 className="text-white text-2xl font-semibold mb-4">Curated Playlists</h2>
@@ -17,7 +20,10 @@ export default function CuratedPlaylists() {
         <div className="flex">
           {playlists.map((playlist, index) => (
             <div key={index} className="flex-none w-full snap-center px-1">
-              <div className="w-full h-20 bg-[#222223] hover:bg-[#292933] text-white flex items-center justify-center rounded-lg transition duration-300 cursor-pointer shadow-md">
+              <div 
+                className="w-full h-20 bg-[#222223] hover:bg-[#292933] text-white flex items-center justify-center rounded-lg transition duration-300 cursor-pointer shadow-md"
+                onClick={() => navigate('/album/1')}
+              >
                 <span className="text-lg sm:text-xl font-medium">{playlist.name}</span>
               </div>
             </div>
@@ -31,6 +37,7 @@ export default function CuratedPlaylists() {
           <div
             key={index}
             className="w-64 h-20 bg-[#222223] hover:bg-[#292933] text-white flex items-center justify-center rounded-lg transition duration-300 cursor-pointer shadow-md"
+            onClick={() => navigate('/album/1')}
           >
             <span className="text-lg sm:text-xl font-medium">{playlist.name}</span>
           </div>
