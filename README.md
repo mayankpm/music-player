@@ -3,7 +3,7 @@
 
 Welcome to **OPUS**, your elegant and intuitive music streaming interface.
 
-![image](https://github.com/user-attachments/assets/a471d6b8-963c-4282-8434-7fa670376f3a)
+![image](https://github.com/user-attachments/assets/05371a57-0b28-44aa-8686-28122e1a423f)
 
 
 ## Getting Started
