@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function MiniPlayer({ isPlaying, onPlayingChange }) {
   const [imageError, setImageError] = useState(false);
@@ -170,13 +171,17 @@ export default function MiniPlayer({ isPlaying, onPlayingChange }) {
 
       {/* Content Layer */}
       <div className="relative h-full px-3 md:px-4 flex items-center justify-between pointer-events-none">
-        {/* Track Info (non-interactive) - Smaller on mobile */}
-        <div className="flex items-center gap-2 md:gap-4">
+        {/* Track Info - Now clickable with Link */}
+        <Link 
+          to="/album/1" 
+          className="flex items-center gap-2 md:gap-4 pointer-events-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
           {!imageError ? (
             <img
               src="/carter3.jpeg"
               alt="Track cover"
-              className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover border border-white/10"
+              className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover border border-white/10 transition-transform duration-200 hover:scale-105"
               onError={() => setImageError(true)}
             />
           ):(
@@ -185,7 +190,7 @@ export default function MiniPlayer({ isPlaying, onPlayingChange }) {
             No<br />track
           </div>
           )}
-          <div>
+          <div className="hover:opacity-80 transition-opacity duration-200">
             <p className="text-white text-xs md:text-sm font-medium select-none truncate max-w-[120px] md:max-w-full">
               {isPlaying ? 'Comfortable' : isDragging ? 'Seeking...' : 'Comfortable'}
             </p>
@@ -195,7 +200,7 @@ export default function MiniPlayer({ isPlaying, onPlayingChange }) {
                 : 'Lil Wayne'}
             </p>
           </div>
-        </div>
+        </Link>
 
         {/* Controls - Buttons closer on mobile */}
         <div 
@@ -226,6 +231,19 @@ export default function MiniPlayer({ isPlaying, onPlayingChange }) {
           <button
             className="text-white/60 hover:text-white transition-all duration-300 
                        focus:outline-none bg-transparent p-0 m-0"
+            onClick={() => {
+              // Restart the current song
+              if (audioRef.current) {
+                audioRef.current.currentTime = 0;
+                setProgress(0);
+                setCurrentTime(0);
+                
+                // If not already playing, start playback
+                if (!isPlaying) {
+                  onPlayingChange(true);
+                }
+              }
+            }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="md:w-5 md:h-5">
               <polygon points="6,4 18,12 6,20" />

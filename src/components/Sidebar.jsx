@@ -1,26 +1,30 @@
 import { useState } from 'react';
 import { IoMenu } from 'react-icons/io5';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({ refreshHome }) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Mock recently played albums data
   const recentAlbums = [
-    { id: 1, cover: '/album1.jpg', title: 'Dark Side of the Moon' },
-    { id: 2, cover: '/album2.jpg', title: 'Random Album' },
-    { id: 3, cover: '/album3.jpg', title: 'Another Album' },
+    { id: 1, cover: '/dsotm.jpeg', title: 'Dark Side of the Moon' },
+    { id: 2, cover: '/testing.jpeg', title: 'Testing' },
+    { id: 3, cover: '/chromakopia.jpeg', title: 'CHROMAKOPIA' },
     // Add more albums as needed
   ];
 
   return (
     <>
       {/* Main sidebar - hidden on mobile, visible on md and above */}
-      <div className={`fixed left-0 top-0 h-screen w-16 hidden md:block bg-black/30 backdrop-blur-md z-40 
+      <div className={`fixed left-0 top-0 h-screen w-16 hidden md:block bg-black/30 z-40 
         ${isExpanded ? 'w-64' : 'w-16'} transition-all duration-300`}>
         {/* Toggle button */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="absolute -right-4 top-6 w-8 h-8 bg-white backdrop-blur-md rounded-full 
+          className="absolute -right-4 top-6 w-8 h-8 bg-white rounded-full 
             flex items-center justify-center text-white/60 hover:text-white transition-colors duration-200
             border border-white/10"
         >
@@ -34,6 +38,16 @@ export default function Sidebar() {
             className={`flex items-start gap-2 text-white/60 hover:text-white
                       transition-colors duration-200 p-2 rounded bg-transparent hover:bg-white/10
                       ${isExpanded ? 'justify-start' : 'justify-start'}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (location.pathname === '/') {
+                // If already on home, just trigger refresh animation
+                refreshHome();
+              } else {
+                // Navigate to home
+                navigate('/');
+              }
+            }}
           >
             <div className="w-6 h-6 flex items-start justify-start">
               <svg

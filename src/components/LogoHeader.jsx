@@ -1,10 +1,10 @@
 export default function LogoHeader() {
     return (
       <section className="min-h-[8vh] w-full flex flex-col items-center justify-center text-center px-8 pt-8">
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white">
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white font-serif" style={{ fontFamily: "Garamond, serif" }}>
           OPUS
         </h1>
-        <p className="text-lg sm:text-xl text-gray-400 mt-3">
+        <p className="text-lg sm:text-xl text-gray-400 mt-3 font-serif">
           A premium music experience
         </p>
   

@@ -1,0 +1,77 @@
+@keyframes glassSlideUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loading-content {
+  transition: opacity 1s ease-out;
+}
+
+.loading-title {
+  font-family: 'Garamond', serif;
+  font-size: clamp(3rem, 10vw, 9rem);
+  color: white;
+  text-shadow: 0 4px 30px rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+.loading-subtitle {
+  font-family: 'Garamond', serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin-top: 1rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+.glass-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -8px 32px 0 rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-panel.animate {
+  animation: glassSlideUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-out forwards;
+}
